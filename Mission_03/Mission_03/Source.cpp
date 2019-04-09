@@ -3,7 +3,7 @@
 #include <array>
 #include <random>
 
-int key = 0;
+int key = 0;                                       // +++
 const int cMazeColumns = 12;
 const int cMazeRows = 8;
 
@@ -11,7 +11,7 @@ const char cEmptySymbol = ' ';
 const char cWallSymbol = 'X';
 const char cCharacterSymbol = '@';
 const char cExitSymbol = '#';
-const char cKeySymbol = '&';                                                                                                                  // +++
+const char cKeySymbol = '&';                       // +++
 
 // Checks if user want so play
 // Return true if user wants to play; false otherwise
@@ -44,7 +44,7 @@ bool doesUserWantsToPlay()
 // Parameters:
 //       maze - reference to maze field that will be modified
 //              (walls added, added character and exit)
-void generateMaze(std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)                                                          // CHECK HERE!
+void generateMaze(std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)                  // CHECK HERE!
 {
 	for (int row = 0; row < cMazeRows; row++)
 	{
@@ -72,7 +72,7 @@ void generateMaze(std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)
 	static std::uniform_int_distribution<int> rowGenerator = std::uniform_int_distribution<int>(2, cMazeRows - 2);
 	static std::uniform_int_distribution<int> columnGenerator = std::uniform_int_distribution<int>(2, cMazeColumns - 2);
 	prMaze[rowGenerator(mt)][columnGenerator(mt)] = cExitSymbol;
-	prMaze[rowGenerator(mt)][columnGenerator(mt)] = cKeySymbol;                                                                                       // +++
+	prMaze[rowGenerator(mt)][columnGenerator(mt)] = cKeySymbol;                                            // +++
 }
 
 // Draws maze onto screen
@@ -129,7 +129,7 @@ bool scanForChar(const std::array<std::array<char, cMazeColumns>, cMazeRows> &ma
 char moveAndGather(int row,
 	int column,
 	const std::string &command,
-	std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)                                               // CHECK HERE!
+	std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)       // CHECK HERE!
 {
 	char rCharMovedOnto = cEmptySymbol;
 
@@ -144,7 +144,7 @@ char moveAndGather(int row,
 		{
 			column--;
 		}
-		if (rCharMovedOnto == cExitSymbol)                                                                           // +++
+		if (rCharMovedOnto == cExitSymbol)                                 // +++
 		{
 			column++;
 		}
@@ -158,7 +158,7 @@ char moveAndGather(int row,
 		{
 			column++;
 		}
-		if (rCharMovedOnto == cExitSymbol)                                                                           // +++
+		if (rCharMovedOnto == cExitSymbol)                                 // +++
 		{
 			column--;
 		}
@@ -173,7 +173,7 @@ char moveAndGather(int row,
 			row--;
 		}
 
-		if (rCharMovedOnto == cExitSymbol)                                                                          // +++
+		if (rCharMovedOnto == cExitSymbol)                                 // +++
 		{
 			row++;
 		}
@@ -187,7 +187,7 @@ char moveAndGather(int row,
 		{
 			row++;
 		}
-		if (rCharMovedOnto == cExitSymbol)                                                                          // +++
+		if (rCharMovedOnto == cExitSymbol)                                  // +++
 		{
 			row--;
 		}
@@ -227,7 +227,7 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
 		if (charMovedOnto == cWallSymbol)
 		{
 			gameMessage("Cannot move here!");
-			system("pause");                                                                                  // +++
+			system("pause");                                                        // +++
 		}
 
 
@@ -237,16 +237,16 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
 			key++;
 		}
 
-		if (charMovedOnto == cExitSymbol && key)                                                              // +++ ( && haveKey )
+		if (charMovedOnto == cExitSymbol && key)                                           // +++ ( && haveKey )
 		{
 			gameMessage("Exit found!");
 			rExitFound = true;
 		}
 
-		if (charMovedOnto == cExitSymbol && key == 0)                                                           // +++
+		if (charMovedOnto == cExitSymbol && key == 0)                                // +++
 		{
 			gameMessage("You dont have the key!");
-			system("pause");                                                                                    // +++
+			system("pause");                                                       // +++
 		}
 	}
 	else
@@ -258,7 +258,7 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
 }
 
 // Executes one round of the game
-void playMazeGame()                                                                                                        // CHECK HERE!
+void playMazeGame()                                               // CHECK HERE!
 {
 	std::cout << "LETS START!" << std::endl;
 
@@ -267,7 +267,7 @@ void playMazeGame()                                                             
 
 	do
 	{
-		system("cls");                                                                                                              // +++
+		system("cls");                                                 // +++
 		drawMaze(maze);
 	} while (!moveCharacterAndCheckIfExitFound(maze));
 }
